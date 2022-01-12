@@ -17,14 +17,39 @@ def input_students
     students
 end
 
+def interactive_menu
+    students = []
+    loop do
+        # print the menu and ask user what to do
+        puts "1. Input the students"
+        puts "2. Show the students"
+        puts "9. Exit"
+        # read the input and save it to a variable
+        selection = gets.chomp
+        # do what the user has asked
+        case selection
+        when "1"
+            students = input_students
+        when "2"
+            print_header
+            print(students)
+            print_footer(students)
+        when "9"
+            exit # will cause program to terminate
+        else 
+            puts "I don't know what you meant, try again"
+        end
+    end
+end
+
 def print_header
     puts "The students of the Villains Academy"
     puts "-------------"
   end
   
   def print(students)
-    students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    students.each.with_index(1) do |student, index|
+      puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
   
@@ -33,7 +58,4 @@ def print_header
   end
   
 # nothing happens until we call the methods
-students = input_students
-print_header
-print(students)
-print_footer(students)
+interactive_menu
