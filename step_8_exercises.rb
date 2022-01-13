@@ -43,6 +43,14 @@ def print_specific_letter(students)
   end
 end
 
+def print_name_shorter(students)
+  puts "Enter the maximum length of the student's name"
+  length = gets.chomp.to_i
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length <= length
+  end
+end 
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
@@ -53,3 +61,4 @@ print_header
 print(students)
 print_footer(students)
 print_specific_letter(students)
+print_name_shorter(students)
